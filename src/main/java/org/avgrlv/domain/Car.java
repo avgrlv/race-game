@@ -30,9 +30,10 @@ public class Car implements Runnable {
     }
 
     private void moveOnStage() throws InterruptedException {
-        this.currentStage = stageQueue.poll();
-        System.out.println("Машина " + model + " перешла на ЭТАП " + currentStage);
-        this.currentStage.go(this);
+        while ((this.currentStage = stageQueue.poll()) != null) {
+            System.out.println("Машина " + model + " перешла на ЭТАП " + currentStage);
+            this.currentStage.go(this);
+        }
     }
 
 
