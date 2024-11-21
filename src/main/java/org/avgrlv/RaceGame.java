@@ -1,4 +1,7 @@
-package org.avgrlv.domain;
+package org.avgrlv;
+
+import org.avgrlv.domain.Car;
+import org.avgrlv.domain.Stage;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

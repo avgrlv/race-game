@@ -33,4 +33,6 @@ public abstract class Stage {
     public int getMaxCapacity() {
         return maxCapacity;
     }
+
+    public abstract void go(Car car) throws InterruptedException;
 }

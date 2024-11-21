@@ -6,6 +6,11 @@ public class Ferry extends Stage {
         return "Паром " + super.getName() + "  максимальное кол-во машин: " + super.getMaxCapacity();
     }
 
+    @Override
+    public void go(Car car) throws InterruptedException {
+
+    }
+
     private int ferrySpeed;
 
     public Ferry(String name, int distance) {

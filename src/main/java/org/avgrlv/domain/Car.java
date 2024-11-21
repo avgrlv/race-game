@@ -1,7 +1,6 @@
 package org.avgrlv.domain;
 
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -30,9 +29,10 @@ public class Car implements Runnable {
         this.maxSpeed = maxSpeed;
     }
 
-    private void moveOnStage() {
+    private void moveOnStage() throws InterruptedException {
         this.currentStage = stageQueue.poll();
         System.out.println("Машина " + model + " перешла на ЭТАП " + currentStage);
+        this.currentStage.go(this);
     }
 
 
@@ -43,7 +43,11 @@ public class Car implements Runnable {
     @Override
     public void run() {
         startTime = System.currentTimeMillis() / 100;
-        moveOnStage();
+        try {
+            moveOnStage();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         if (this.currentSpeed <= this.maxSpeed)
             this.currentSpeed += (int) (5 * Math.random());
     }
